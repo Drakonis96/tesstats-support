@@ -1,0 +1,71 @@
+name: Bug report
+description: Report a reproducible problem in Tesstats
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve Tesstats. Do not include passwords, tokens, VINs, private server URLs or precise locations.
+  - type: input
+    id: version
+    attributes:
+      label: Tesstats version
+      placeholder: "For example: 5.6.0 (34)"
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device and OS
+      placeholder: "For example: iPhone 16 Pro, iOS 18.6"
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Summary
+        - Driver Display
+        - Trips
+        - Charging
+        - Battery and statistics
+        - Notifications or Live Activities
+        - Apple Watch
+        - Settings or connection
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Explain the smallest reliable sequence that triggers the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add a redacted screenshot or relevant non-sensitive details if useful.
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I removed credentials, tokens, VINs, private URLs and precise location data.
+          required: true

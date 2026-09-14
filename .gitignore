@@ -1,0 +1,10 @@
+.DS_Store
+*.log
+*.xcarchive
+*.ipa
+*.dSYM.zip
+.env
+.env.*
+!*.env.example
+AuthKey_*.p8
+*.mobileprovision
