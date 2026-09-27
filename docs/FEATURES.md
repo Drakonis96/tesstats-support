@@ -1,31 +1,79 @@
 # Feature guide
 
+[Back to README](../README.md)
+
+Use the correct vehicle and disable demo mode before interpreting any numbers as your own. Labels below use the English interface; select English or Spanish under **Settings → Prefs**.
+
 ## Summary
 
-The main dashboard shows current battery, estimated range, charging state, climate, locks, Sentry status, tire pressure and vehicle location. Cards can be customised without duplicating the same information in multiple tabs.
+Summary combines live vehicle information with recent history. Battery, estimated range, state, map, temperatures, security indicators and tire pressure depend on what TeslaMate supplies. The last-trip card requires history.
+
+Use the four-square layout control to show/hide and reorder supported cards. A hidden card is not missing data. Security icons are readouts, not commands to lock the car, enable Sentry or control windows.
 
 ## Driver Display
 
-Driver Display is a configurable, full-screen driving view for portrait and landscape use. It can show speed, gear, power/regen, battery and range, temperatures, odometer, current-trip distance, average trip consumption, estimated trip cost and a following map. Individual elements can be enabled or disabled from the display itself.
-
-The display supports iPhone GPS/TeslaMate and an optional direct, read-only Bluetooth source. See [Driver Display and Bluetooth security](DRIVER_DISPLAY.md).
+Open it while parked for a portrait/landscape cockpit with configurable elements, day/night appearance, zoom and optional Bluetooth telemetry. Configure this view from its own controls, not only general Settings. See the [Driver Display guide](DRIVER_DISPLAY.md) for each source and the pairing flow.
 
 ## Trips
 
-Trips include route, distance, duration, energy consumption and elevation when provided by TeslaMateApi. Work/Personal tags are kept on the device and can be used for filtering and exports.
+1. Open Trips and allow history to load.
+2. Filter the period or search available trip information.
+3. Open a trip to inspect its endpoints, route and available distance, duration and consumption.
+4. Use Work/Personal tags where needed; these are app-side annotations, not edits to TeslaMate's database.
+5. Use export/share for the selected records.
+
+A short or incompletely recorded drive may lack route or energy samples. Missing values should not be interpreted as zero consumption.
 
 ## Charging
 
-Charging history includes energy, cost, location, AC/DC mix and charge curves when TeslaMate recorded enough per-point data. Tesstats accepts zero-cost charging and can use per-location prices or time-of-use tariffs.
+Open a session for its location, energy, cost details and available curve. The Charging screen also provides AC/DC breakdown, locations and monthly cost analysis.
 
-## Battery health and statistics
+Use the [charging guide](CHARGING.md) for prices, free charging, tariffs and multi-location date filters. Use [export details](CHARGING_EXPORTS.md) when taking CSV/JSON/GPX data into another tool.
 
-Battery views estimate usable capacity, degradation and full-charge range from available history. Statistics include monthly comparisons, consumption, cost per distance, charging locations, temperature relationships and calendar activity. These are estimates derived from TeslaMate data rather than official battery diagnostics.
+## Battery and statistics
 
-## Apple features
+Battery-health and full-charge-range estimates depend on historical observations. Small samples, temperature and driving conditions can affect results. These numbers are not a Tesla service diagnostic or warranty assessment.
 
-Depending on the device and installation method, Tesstats can provide widgets, charging Live Activities, Siri/Shortcuts and an Apple Watch companion. Apple Watch pages cover battery and charging, range, locks/Sentry/occupancy, tire pressure, climate and battery-health statistics.
+Other statistical views summarise the recorded trips/charges. Verify the selected car, date range, units and pricing before comparing totals between screens.
 
-## Multiple vehicles
+## Settings navigation
 
-Vehicle selection, Bluetooth pairing and display state are managed per vehicle. Verify the selected vehicle before changing connection or pairing settings.
+| Tab label | Main contents |
+|---|---|
+| **Server** | MQTT, history API, proxy authentication, certificates and connection test. |
+| **Prefs** | Appearance, accent colour, language, units, currency, electricity pricing and tariffs. |
+| **Alerts** | Permissions, categories, Sentry diagnostics, quiet hours, Live Activity and optional push. |
+| **Data** | Server profiles, configuration backup/restore, export and local storage. |
+| **Info** | Vehicles, demo mode and app information. |
+
+Save connection changes before retesting the dashboard. In multi-server setups, verify both the active profile and vehicle.
+
+## Apple Watch
+
+1. Install the watch companion from the iPhone's Watch app when offered by the installed build.
+2. Open Tesstats on the phone, connect successfully and select the car.
+3. Keep the paired phone/watch connection available and open Tesstats on the watch.
+4. Swipe horizontally through battery/charging and range, lock/Sentry/occupancy, tire pressures, climate, and battery-health/statistics pages.
+5. If the watch is stale, reopen the phone app and check its connection before retrying.
+
+The watch receives snapshots through the iPhone integration. It does not maintain its own direct Tesla telemetry session. Background scheduling and phone availability can delay updates; it is not a guaranteed real-time safety display.
+
+## Widgets and Live Activities
+
+Add a Tesstats widget through the system widget picker after opening and configuring the app. Widgets use shared snapshots and OS-controlled refresh opportunities, not a permanent live connection.
+
+Charging Live Activities are opt-in under Alerts and have separate background push requirements. See [Notifications](NOTIFICATIONS.md). Do not assume a frozen widget/Activity means the car stopped charging.
+
+## Configuration backups and exports
+
+In **Settings → Data**:
+
+1. Choose **Export encrypted backup**.
+2. Set a strong password and save the file somewhere private.
+3. Keep that password securely; it is required to decrypt the backup.
+4. To restore, choose **Restore from backup file**, select it, enter its password when prompted and review the restored configuration.
+5. Test the connection and selected vehicle after restoration.
+
+A configuration backup is not a backup of TeslaMate's PostgreSQL database. It does not transfer a Secure Enclave Bluetooth private key to another phone. Data exports are separate and may include precise routes/charging locations; do not post them unredacted.
+
+Deleting local cache is also different from deleting server history. Read confirmation dialogs before clearing data.
