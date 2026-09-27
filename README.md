@@ -15,8 +15,9 @@ Live vehicle status, trips, charging costs, battery insights and a customisable 
   <img src="docs/images/charging.png" width="220" alt="Charging sessions and statistics">
   <img src="docs/images/trips.png" width="220" alt="Trip history and routes">
 </p>
+
 <p align="center">
-    <img src="docs/screenshots/gallery/driver-landscape.png" width="668" alt="Driver Display in landscape">
+  <img src="docs/images/driver-landscape.png" width="668" alt="Driver Display in landscape">
 </p>
 
 This is the **public documentation and support repository**. It contains user guides and screenshots, not the private application source code. Screenshots illustrate the interface; your layout and available data may differ by build and configuration.
